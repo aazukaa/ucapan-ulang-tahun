@@ -1,0 +1,396 @@
+/* --- 1. Pengaturan Dasar & Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #f7aef8 100%);
+    overflow: hidden; /* Mencegah scrollbar muncul akibat animasi balon/confetti */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- 2. Container Utama Halaman --- */
+.halaman_depan {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- 3. Kartu Kejutan Utama --- */
+.kartu_kejutan_utama {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 3px solid #ffffff;
+    border-radius: 24px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 450px;
+    min-height: 480px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(255, 75, 145, 0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    animation: munculKartu 1s ease-out forwards;
+}
+
+/* --- 4. Elemen Teks & Badge --- */
+.badge_spesial {
+    background: linear-gradient(45deg, #ff4b91, #ff76ce);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(255, 75, 145, 0.3);
+}
+
+.teks_neon {
+    font-size: 24px;
+    color: #ff4b91;
+    font-weight: 800;
+    line-height: 1.4;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+.teks_pemberitahuan {
+    font-size: 14px;
+    color: #6c5ce7;
+    font-weight: 600;
+    background: #f1f2f6;
+    padding: 8px 15px;
+    border-radius: 12px;
+    border-left: 4px solid #6c5ce7;
+    margin-top: 10px;
+    display: none; /* Akan diubah jadi inline-block oleh JS */
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- 5. Animasi Kado di Tengah --- */
+.box_kado_animasi {
+    font-size: 80px;
+    margin: 20px 0;
+    cursor: pointer;
+    user-select: none;
+    animation: kadoGoyang 2s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.box_kado_animasi:hover {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* --- 6. Area Tombol Jail (Tombol yang Kabur) --- */
+.area_tombol_jail {
+    position: relative;
+    width: 100%;
+    height: 80px; /* Memberi ruang bagi tombol untuk bergerak bebas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tombol_kejutan {
+    background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 8px 15px rgba(108, 92, 231, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    outline: none;
+}
+
+.tombol_kejutan:hover {
+    background: linear-gradient(45deg, #ff4b91, #ff76ce);
+    box-shadow: 0 10px 20px rgba(255, 75, 145, 0.4);
+    transform: translateY(-2px);
+}
+
+.tombol_kejutan:active {
+    transform: scale(0.95);
+}
+
+/* --- 7. Background Ornamen (Balon & Sparkle Melayang) --- */
+.balon_bg, .balon_bg2, .balon_bg3 {
+    position: absolute;
+    font-size: 40px;
+    user-select: none;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.balon_bg { left: 10%; top: 20%; animation: melayang 6s ease-in-out infinite; }
+.balon_bg2 { right: 15%; top: 15%; animation: melayang 8s ease-in-out infinite 1s; font-size: 30px; }
+.balon_bg3 { left: 20%; bottom: 15%; animation: melayang 7s ease-in-out infinite 0.5s; font-size: 35px; }
+
+/* --- 8. Confetti Efek Berjatuhan --- */
+.confetti {
+    position: absolute;
+    top: -50px;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    opacity: 0.8;
+    z-index: 2;
+}
+
+.c1 { left: 20%; background: #ff4b91; animation: jatuh 5s linear infinite; }
+.c2 { left: 50%; background: #6c5ce7; animation: jatuh 7s linear infinite 1.5s; }
+.c3 { left: 80%; background: #ffcbd1; animation: jatuh 6s linear infinite 0.5s; }
+.c4 { left: 90%; background: #ff76ce; animation: jatuh 4s linear infinite 2s; }
+
+/* --- 9. Kumpulan Animasi (Keyframes) --- */
+@keyframes munculKartu {
+    0% { opacity: 0; transform: translateY(50px) scale(0.9); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes kadoGoyang {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    20% { transform: rotate(-8deg) scale(1.05); }
+    40% { transform: rotate(8deg) scale(1.05); }
+    60% { transform: rotate(-5deg) scale(1.03); }
+    80% { transform: rotate(5deg) scale(1.03); }
+}
+
+@keyframes melayang {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+@keyframes jatuh {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+}/* ==========================================================================
+   KODE TAMBAHAN UNTUK HALAMAN UCAPAN ULANG TAHUN (ultah.html)
+   ========================================================================== */
+
+/* --- 1. Latar Belakang & Layout Utama --- */
+.body_ultah {
+    background: linear-gradient(135deg, #2c1a4d 0%, #4a154b 50%, #1a0933 100%);
+    overflow-y: auto; /* Izinkan scroll jika konten melebihi layar di HP */
+    overflow-x: hidden;
+    height: auto;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_ultah {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    z-index: 10;
+    animation: fadeInGlow 1.2s ease-out;
+}
+
+/* --- 2. Bagian Header & Judul --- */
+.head_ultah {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.animasi_goyang {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(45deg, #ff76ce, #f7aef8, #ffeeaf, #94ebeb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(247, 174, 248, 0.5);
+    margin-bottom: 10px;
+    display: inline-block;
+    animation: goyangKepala 2.5s ease-in-out infinite;
+}
+
+.sub_judul {
+    color: #e0d4f7;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+/* --- 3. Kartu Ucapan 3D --- */
+.kartu_ucapan_3d {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 
+                inset 0 0 15px rgba(255, 255, 255, 0.05);
+    transform: perspective(800px) rotateX(5deg);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    margin-bottom: 30px;
+}
+
+.kartu_ucapan_3d:hover {
+    transform: perspective(800px) rotateX(0deg) translateY(-5px);
+    box-shadow: 0 25px 45px rgba(255, 118, 206, 0.25);
+    border-color: rgba(255, 118, 206, 0.5);
+}
+
+.kartu_ucapan_3d h2 {
+    font-size: 22px;
+    color: #ff76ce;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.kartu_ucapan_3d p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #f3f0ff;
+}
+
+/* --- 4. Frame Foto Interaktif --- */
+.frame_foto {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 30px auto;
+    border-radius: 50px; /* Bentuk lingkaran tumpul kekinian */
+    border: 6px solid #ffffff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    overflow: hidden;
+    transform: rotate(-3deg);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.frame_foto:hover {
+    transform: rotate(3deg) scale(1.08);
+    border-color: #ff76ce;
+}
+
+.gambar_interaktif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.frame_foto:hover .gambar_interaktif {
+    transform: scale(1.1); /* Efek zoom di dalam frame */
+}
+
+/* --- 5. Tombol Doa Interaktif & Pesan Rahasia --- */
+.tombol_doa_interaktif {
+    background: linear-gradient(45deg, #ff76ce, #6c5ce7);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+    transition: all 0.3s ease;
+}
+
+.tombol_doa_interaktif:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(255, 118, 206, 0.5);
+}
+
+.pesan_sembunyi {
+    display: none;
+}
+
+.pesan_tampil_baru {
+    display: block;
+    text-align: center;
+    background: rgba(255, 118, 206, 0.15);
+    border: 2px dashed #ff76ce;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 20px;
+    animation: popMasukDoa 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- 6. Tombol Kembali Estetik --- */
+.tombol_kembali_estetik {
+    color: #a29bfe;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.tombol_kembali_estetik:hover {
+    color: #ff76ce;
+    text-shadow: 0 0 10px rgba(255, 118, 206, 0.5);
+}
+
+/* --- 7. Animasi Balon Terbang ke Atas --- */
+.balon_ultah {
+    position: fixed;
+    bottom: -100px;
+    font-size: 45px;
+    user-select: none;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.bu1 { left: 5%; animation: terbangKeAtas 12s linear infinite; }
+.bu2 { left: 25%; animation: terbangKeAtas 15s linear infinite 2s; font-size: 35px; }
+.bu3 { right: 25%; animation: terbangKeAtas 14s linear infinite 1s; font-size: 40px; }
+.bu4 { right: 5%; animation: terbangKeAtas 11s linear infinite 3s; }
+
+/* --- 8. Kumpulan Keyframes Khusus Ultah --- */
+@keyframes fadeInGlow {
+    0% { opacity: 0; transform: translateY(30px); filter: blur(5px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes goyangKepala {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.03); }
+}
+
+@keyframes popMasukDoa {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes terbangKeAtas {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-115vh) translateX(30px) rotate(20deg); opacity: 0; }
+}

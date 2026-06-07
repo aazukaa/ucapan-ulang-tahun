@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aku Ada Kejutan Buat Kamu!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="halaman_depan">
+        <div class="confetti c1"></div>
+        <div class="confetti c2"></div>
+        <div class="confetti c3"></div>
+        <div class="confetti c4"></div>
+        <div class="balon_bg">🎈</div>
+        <div class="balon_bg2">✨</div>
+        <div class="balon_bg3">🎁</div>
+
+        <div class="kartu_kejutan_utama">
+            
+            <div class="area_tulisan">
+                <span class="badge_spesial">Special Gift 🎀</span>
+                <h1 class="teks_neon">Hey, Aku Punya Sesuatu Buat Kamu... 👀</h1>
+                <p id="teks_curiga" class="teks_pemberitahuan"></p>
+            </div>
+
+            <div class="box_kado_animasi">🎁</div>
+
+            <div class="area_tombol_jail">
+                <button id="tombol_jail" onclick="pindahTombol()" class="tombol_kejutan">Buka Kejutannya ✨</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        let jumlahKlik = 0;
+        function pindahTombol() {
+            jumlahKlik++;
+            const tombol = document.getElementById("tombol_jail");
+            const teks = document.getElementById("teks_curiga");
+            const daftarTulisan = [
+                "Eits, gak segampang itu dong! Coba klik lagi 😜",
+                "Loh? Kok tombolnya kabur? Kejar dong! 🏃‍♂️",
+                "Dikit lagi... satu kali klik lagi serius! 😂",
+                "Tapi boong hehehe, klik lagi 😊",
+                "Beneran sekali lagi ✌️"
+            ];
+
+            if (jumlahKlik <= 5) {
+                teks.innerHTML = daftarTulisan[jumlahKlik - 1];
+                teks.style.display = "inline-block";
+                
+                tombol.style.position = "absolute";
+                
+                // Koordinat acak diatur agar tombol tetap berada di dalam area kartu utama bawah
+                const koordinatX = Math.floor(Math.random() * 60) + 10; 
+                const koordinatY = Math.floor(Math.random() * 40) + 20; 
+
+                tombol.style.left = koordinatX + "%";
+                tombol.style.top = koordinatY + "%";
+            } else {
+                window.location.href = "ultah.html";
+            }
+        }
+    </script>
+</body>
+</html>

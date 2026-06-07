@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun! 🎉</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="body_ultah">
+
+    <iframe src="musik.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+    <audio autoplay loop>
+        <source src="musik.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="balon_ultah bu1">🎈</div>
+    <div class="balon_ultah bu2">🎂</div>
+    <div class="balon_ultah bu3">🎉</div>
+    <div class="balon_ultah bu4">🥳</div>
+
+    <div class="container_ultah">
+        <header class="head_ultah">
+            <h1 class="animasi_goyang">🥳 HAPPY BIRTHDAY! 🎂</h1>
+            <p class="sub_judul">Hari ini adalah hari yang paling spesial buat kamu</p>
+        </header>
+
+        <main class="konten_ultah">
+            <div class="kartu_ucapan_3d">
+                <h2>Selamat Berkurang Usia! ✨</h2>
+                <p>Semoga di umur yang baru ini kamu panjang umur, sehat selalu, dilancarkan rezekinya, dan semua impian serta cita-citamu bisa segera tercapai. Tetap jadi orang yang luar biasa dan ceria ya! Udah tuwa kamu</p>
+            </div>
+
+            <div class="frame_foto">
+                <img src="kue_ultah.jpg" alt="Selamat Ulang Tahun" class="gambar_interaktif">
+            </div> 
+
+            <button onclick="munculkanKejutan()" class="tombol_doa_interaktif">
+                Klik Di Sini Buat Doa Tambahan 🎁
+            </button>
+            <div id="pesan_rahasia" class="pesan_sembunyi"></div>
+        </main>
+        
+        <p style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="tombol_kembali_estetik">← Ulangi Kejutan</a>
+        </p>
+    </div>
+
+    <script>
+        function munculkanKejutan() {
+            const listPesan = [
+                "Semoga semua urusan kamu dipermudah tahun ini! 💻",
+                "Ditunggu ya makan-makan traktirannya! 🍕",
+                "Semoga hari-hari kamu selalu dikelilingi orang-orang baik! ❤️",
+                "Selalu bahagia dan jangan lupa tersenyum hari ini! ✨",
+                "Semoga cita-cita kamu bisa jadi nyata yak! 🌟"
+            ];
+            
+            const pesanAcak = listPesan[Math.floor(Math.random() * listPesan.length)];
+            const kotakPesan = document.getElementById("pesan_rahasia");
+            kotakPesan.innerHTML = pesanAcak;
+            kotakPesan.className = "pesan_tampil_baru"; 
+        }
+    </script>
+</body>
+</html>
