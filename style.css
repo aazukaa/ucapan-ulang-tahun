@@ -394,3 +394,359 @@ body {
     90% { opacity: 0.6; }
     100% { transform: translateY(-115vh) translateX(30px) rotate(20deg); opacity: 0; }
 }
+/* --- Tombol Galeri --- */
+.tombol_galeri{
+    background: linear-gradient(45deg, #ff76ce, #ff4b91);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+
+    display: block;
+    width: fit-content;
+    margin: 15px auto 0 auto;
+
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(255, 75, 145, 0.4);
+    transition: all 0.3s ease;
+}
+
+.tombol_galeri:hover{
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #ff4b91, #ff76ce);
+    box-shadow: 0 12px 25px rgba(255,118,206,0.5);
+}
+
+.tombol_galeri:active{
+    transform: scale(0.97);
+}
+
+/* ========================= */
+/* GALERI HALAMAN */
+/* ========================= */
+
+.body_galeri{
+    background: linear-gradient(135deg, #2c1a4d, #4a154b, #1a0933);
+    min-height: 100vh;
+    padding: 40px 20px;
+    overflow-x: hidden;
+}
+
+.container_galeri{
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+}
+
+.container_galeri h1{
+    color: white;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.container_galeri p{
+    color: #e0d4f7;
+    margin-bottom: 20px;
+}
+
+/* GRID FOTO */
+.grid_foto{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* CARD FOTO */
+.card_foto{
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+
+    border: 2px solid rgba(255,255,255,0.15);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+}
+
+.card_foto:nth-child(odd){
+    transform: rotate(-3deg);
+}
+
+.card_foto:hover{
+    transform: scale(1.08) rotate(0deg);
+     z-index: 10;
+    box-shadow: 0 20px 35px rgba(255,118,206,0.4);
+    border-color: #ff76ce;
+}
+
+.card_foto img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card_foto p{
+    padding: 12px;
+    color: white;
+    font-size: 14px;
+}
+
+/* SURAT KECIL DI GALERI */
+.surat_kecil{
+    margin-top: 40px;
+    background: rgba(255,255,255,0.08);
+    padding: 25px;
+    border-radius: 20px;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.surat_kecil h2{
+    color: #ff76ce;
+    margin-bottom: 10px;
+}
+
+.surat_kecil p{
+    line-height: 1.8;
+    color: #f3f0ff;
+}
+
+/* Tombol Kembali Kecil */
+.tombol_kembali{
+    background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+    color: white;
+    border: none;
+
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+
+    border-radius: 50px;
+    cursor: pointer;
+
+    display: block;
+    margin: 15px auto 0 auto;
+
+    box-shadow: 0 5px 12px rgba(108,92,231,0.3);
+    transition: all 0.3s ease;
+}
+
+.tombol_kembali:hover{
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #ff76ce, #ff4b91);
+}
+
+/* ========================= */
+/* ZOOM FOTO GALERI */
+/* ========================= */
+
+.card_foto img{
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.card_foto img:hover{
+    transform: scale(1.05);
+}
+
+
+/* Background saat foto dibuka */
+.popup_foto{
+    display: none;
+    position: fixed;
+    z-index: 9999;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.85);
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Foto besar */
+.popup_foto img{
+    max-width: 90%;
+    max-height: 85%;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 0 30px rgba(255,118,206,0.8);
+
+    animation: munculFoto 0.4s ease;
+}
+
+
+/* Tombol tutup */
+.tutup_popup{
+    position: absolute;
+
+    top: 25px;
+    right: 40px;
+
+    color:white;
+    font-size:45px;
+
+    cursor:pointer;
+}
+
+
+/* Animasi */
+@keyframes munculFoto{
+
+    from{
+        transform:scale(0.5);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}/* ========================= */
+/* FIX SCROLL HALAMAN GALERI */
+/* ========================= */
+
+.body_galeri{
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 40px 20px;
+    display: block;
+}
+
+.container_galeri{
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+.grid_foto{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.dekorasi{
+    position: fixed;
+    font-size: 40px;
+    opacity: 0.3;
+    z-index: 1;
+    animation: melayangGaleri 6s ease-in-out infinite;
+}
+
+.b1{top:10%;left:5%;}
+.b2{top:20%;right:10%;}
+.b3{bottom:20%;left:8%;}
+.b4{bottom:10%;right:5%;}
+
+@keyframes melayangGaleri{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-20px);}
+}
+
+.card_foto{
+    opacity: 0;
+    animation: munculFoto 0.8s forwards;
+}
+
+.card_foto:nth-child(1){animation-delay:0.2s;}
+.card_foto:nth-child(2){animation-delay:0.4s;}
+.card_foto:nth-child(3){animation-delay:0.6s;}
+.card_foto:nth-child(4){animation-delay:0.8s;}
+.card_foto:nth-child(5){animation-delay:1s;}
+.card_foto:nth-child(6){animation-delay:1.2s;}
+
+@keyframes munculFoto{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.love{
+    position:fixed;
+    font-size:30px;
+    opacity:.4;
+    z-index:0;
+}
+
+.love1{left:5%; animation:terbang 12s linear infinite;}
+.love2{left:30%; animation:terbang 15s linear infinite;}
+.love3{right:25%; animation:terbang 13s linear infinite;}
+.love4{right:5%; animation:terbang 10s linear infinite;}
+
+@keyframes terbang{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-120vh);
+    }
+}
+
+/* ========================= */
+/* SURAT RAHASIA */
+/* ========================= */
+
+#suratRahasia{
+    display: none;
+    animation: munculSurat 0.6s ease;
+}
+
+.tombol_surat{
+    display: block;
+    margin: 30px auto;
+
+    background: linear-gradient(45deg,#ff76ce,#ff4b91);
+    color: white;
+
+    border: none;
+    border-radius: 50px;
+
+    padding: 14px 28px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(255,118,206,.4);
+    transition: .3s;
+}
+
+.tombol_surat:hover{
+    transform: scale(1.05);
+}
+
+@keyframes munculSurat{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

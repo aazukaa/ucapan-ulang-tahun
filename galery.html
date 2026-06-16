@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Foto 📸</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body_galeri">
+    <iframe src="musik2.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+    <audio autoplay loop>
+        <source src="musik2.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="dekorasi b1">🎈</div>
+    <div class="dekorasi b2">✨</div>
+    <div class="dekorasi b3">🎂</div>
+    <div class="dekorasi b4">🎉</div>
+    <div class="love love1">❤️</div>
+    <div class="love love2">💖</div>
+    <div class="love love3">💕</div>
+    <div class="love love4">💗</div>
+    <div class="container_galeri">
+    
+
+        <h1>📸 Galeri Foto</h1>
+        <p>Beberapa foto kamu yang aku punya 🦢</p>
+
+
+        <!-- AREA FOTO -->
+        <div class="grid_foto">
+
+            <div class="card_foto">
+                <img src="foto1.jpg" alt="Foto 1" onclick="bukaFoto(this)">
+                <p>Random banget tiba tiba ngirim foto ini, tapi lucu sih 😒</p>
+            </div>
+
+            <div class="card_foto">
+                <img src="foto2.jpg" alt="Foto 2" onclick="bukaFoto(this)">
+                <p>Foto hasil barter ini 😆</p>
+            </div>
+
+            <div class="card_foto">
+                <img src="foto3.jpg" alt="Foto 3" onclick="bukaFoto(this)">
+                <p>Kepencet tombol foto upss 🤭</p>
+            </div>
+
+            <div class="card_foto">
+                <img src="foto4.jpg" alt="Foto 4" onclick="bukaFoto(this)">
+                <p>Ini siapa nyak 📷</p>
+            </div>
+
+            <div class="card_foto">
+                <img src="foto5.jpg" alt="Foto 5" onclick="bukaFoto(this)">
+                <p>Selamat bekerja 🌟</p>
+            </div>
+
+            <div class="card_foto">
+                <img src="foto6.jpg" alt="Foto 6" onclick="bukaFoto(this)">
+                <p>Sekali lagi selamat ulang tahunn 🎂</p>
+            </div>
+
+        </div>
+
+
+        <!-- TOMBOL BUKA SURAT -->
+    <button onclick="bukaSurat()" class="tombol_surat">
+        💌 Buka Surat Rahasia
+    </button>
+
+    <!-- SURAT -->
+    <div class="surat_kecil" id="suratRahasia">
+
+    <h2>💌 Pesan Untuk Kamu</h2>
+
+    <p>
+        Selamat ulang tahun yaa,
+        Semoga di umur yang baru ini semua kebahagiaan selalu menyertaimu,
+        dan semoga setiap langkahmu dipenuhi keberuntungan serta kesuksesan.
+    </p>
+
+</div>
+
+
+        <!-- TOMBOL KEMBALI -->
+        <a href="ultah.html" class="tombol_kembali_estetik">
+            ← Kembali
+        </a>
+
+
+    </div>
+
+
+
+    <!-- POPUP FOTO BESAR -->
+    <div class="popup_foto" id="popupFoto">
+
+        <span class="tutup_popup" onclick="tutupFoto()">
+            ×
+        </span>
+
+        <img id="gambarBesar">
+
+    </div>
+
+
+
+    <script>
+
+        function bukaSurat(){
+
+    const surat = document.getElementById("suratRahasia");
+
+    if(surat.style.display === "block"){
+        surat.style.display = "none";
+    }else{
+        surat.style.display = "block";
+    }
+
+        }
+        function bukaFoto(gambar){
+
+            const popup = document.getElementById("popupFoto");
+            const gambarBesar = document.getElementById("gambarBesar");
+
+            popup.style.display = "flex";
+            gambarBesar.src = gambar.src;
+
+        }
+
+
+        function tutupFoto(){
+
+            document.getElementById("popupFoto").style.display = "none";
+
+        }
+
+
+        // Klik area gelap untuk menutup foto
+        document.getElementById("popupFoto").onclick = function(e){
+
+            if(e.target.id === "popupFoto"){
+                tutupFoto();
+            }
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

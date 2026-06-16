@@ -21,7 +21,7 @@
     <div class="container_ultah">
         <header class="head_ultah">
             <h1 class="animasi_goyang">🥳 HAPPY BIRTHDAY! 🎂</h1>
-            <p class="sub_judul">Hari ini adalah hari yang paling spesial buat kamu</p>
+            <p class="sub_judul">Hari ini adalah hari yang spesial buat kamu</p>
         </header>
 
         <main class="konten_ultah">
@@ -34,16 +34,23 @@
                 <img src="kue_ultah.jpg" alt="Selamat Ulang Tahun" class="gambar_interaktif">
             </div> 
 
-            <button onclick="munculkanKejutan()" class="tombol_doa_interaktif">
-                Klik Di Sini Buat Doa Tambahan 🎁
-            </button>
-            <div id="pesan_rahasia" class="pesan_sembunyi"></div>
-        </main>
-        
-        <p style="text-align: center; margin-top: 40px;">
-            <a href="index.html" class="tombol_kembali_estetik">← Ulangi Kejutan</a>
-        </p>
-    </div>
+         <div class="area_tombol">
+
+    <button onclick="munculkanKejutan()" class="tombol_doa_interaktif">
+        Klik Di Sini Buat Doa Tambahan 🎁
+    </button>
+
+    <button onclick="window.location.href='galery.html'" class="tombol_galeri">
+        Liat bagian selanjutnya 📸
+    </button>
+
+    <button onclick="window.location.href='index.html'" class="tombol_kembali">
+        ← Kembali ke Awal
+    </button>
+
+</div>
+
+<div id="pesan_rahasia" class="pesan_sembunyi"></div>
 
     <script>
         function munculkanKejutan() {
